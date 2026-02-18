@@ -16,3 +16,14 @@ class PrivateKey: # All objects coming from this class will know how to generate
     
     def sign(self, data: bytes) -> bytes:
         return self.signing_key.sign(data)
+
+# Let's test!
+
+if __name__ == "__main__":
+    pk = PrivateKey()
+    print("Private key:", pk.secret.hex())
+    print("Public key:", pk.public_key().hex())
+
+    message = b"Hello bitcoin!"
+    signature = pk.sign(message)
+    print("Signature", signature.hex())
